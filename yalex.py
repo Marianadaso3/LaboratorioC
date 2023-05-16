@@ -35,12 +35,12 @@ class Yalex:
             i = 0
             while len(chars) > 0: #se ejecuta mientras tenga elementos 
                 char = chars.pop(0) # En cada iteración del bucle, se saca el primer elemento de la lista chars y se asigna a la variable char
-                if char == '\\':  # Si el caracter es un escape
+                if char == '\\':  # Si el caracter es un esc
                     stack.append(char + chars.pop(0))  # Agrega el escape y el siguiente caracter a la pila
                     
                 else:
                     stack.append(char)  # Si no es un escape, agrega el caracter directamente
-                i += 1
+                #i += 1
 
             # Une todos los elementos de la pila con el operador "|" y los encierra en paréntesis
             return f"({'|'.join(stack)})"
@@ -50,7 +50,7 @@ class Yalex:
             vars = {}  # Diccionario que almacena las variables definidas en el archivo YALex
             infix = ''  # Expresión regular en notación infix para las reglas de producción definidas en el archivo YALex
             n_line = 2  # Número de línea actual (se inicia en 2 debido a que la primera línea se omite)
-            
+
             with open(file) as yal:
                 for line in yal:
                     if len(line) > 1:  # Ignora las líneas vacías
@@ -60,7 +60,7 @@ class Yalex:
                                 if tokens[0] == 'let':  # Si la línea define una variable
                                     value = tokens[3]  # Obtiene el valor de la variable
                                     for var in vars.keys():
-                                        #print ("VER EL KEY: " + var)
+                                       #print ("VER EL KEY: " + var)
                                         #print ("PRUEBA" + vars[var])
                                         value = value.replace(var, vars[var])  # Reemplaza las variables por sus valores
                                         #print ("DEPUES DE REPLACE"+ value)
